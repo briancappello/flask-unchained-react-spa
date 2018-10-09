@@ -1,10 +1,10 @@
 import os
 
-project_root = os.path.abspath(os.path.dirname(__file__))
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
 
 def folder_or_none(folder_name):
-    if not os.path.exists(os.path.join(project_root, folder_name)):
+    if not os.path.exists(os.path.join(PROJECT_ROOT, folder_name)):
         return None
     return folder_name
 

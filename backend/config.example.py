@@ -3,9 +3,7 @@ import redis
 
 from appdirs import AppDirs
 from datetime import timedelta
-from flask_unchained import url_for
-from flask_unchained import AppConfig
-from flask_unchained.utils import get_boolean_env
+from flask_unchained import AppConfig, get_boolean_env, url_for
 from werkzeug.local import LocalProxy
 
 
