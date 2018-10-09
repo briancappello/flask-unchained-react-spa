@@ -36,7 +36,7 @@ class SeriesData(FileData):
     @property
     def summary(self):
         html = markdown.markdown(self.markdown,
-                                 Config.MARKDOWN_EXTENSIONS,
+                                 Config.BLOG_MARKDOWN_EXTENSIONS,
                                  output_format='html5')
 
         # strip html and body tags
@@ -48,12 +48,12 @@ def load_series_datas(dir_path, default_author, last_updated):
     for dir_entry in os.scandir(dir_path):  # type: os.DirEntry
         is_dir = dir_entry.is_dir()
         if is_dir and os.path.exists(os.path.join(dir_entry.path,
-                                                  Config.SERIES_FILENAME)):
+                                                  Config.BLOG_SERIES_FILENAME)):
             is_updated = dir_entry.stat().st_mtime > last_updated
             if is_updated:
                 yield from load_series_datas(dir_entry.path,
                                              default_author,
                                              last_updated)
 
-        if dir_entry.name == Config.SERIES_FILENAME:
+        if dir_entry.name == Config.BLOG_SERIES_FILENAME:
             yield SeriesData(dir_entry, default_author, last_updated)

@@ -83,7 +83,7 @@ class ArticleData(FileData):
     @functools.lru_cache()
     def html(self):
         html = markdown.markdown(self.markdown,
-                                 Config.MARKDOWN_EXTENSIONS,
+                                 Config.BLOG_MARKDOWN_EXTENSIONS,
                                  output_format='html5')
 
         # fix image links
@@ -100,11 +100,11 @@ class ArticleData(FileData):
         if not self.is_dir:
             return body
         stylesheet_filepath = os.path.join(self.dir_path,
-                                           Config.ARTICLE_STYLESHEET_FILENAME)
+                                           Config.BLOG_ARTICLE_STYLESHEET_FILENAME)
         if not os.path.exists(stylesheet_filepath):
             return body
 
-        href = self._get_static_url(Config.ARTICLE_STYLESHEET_FILENAME)
+        href = self._get_static_url(Config.BLOG_ARTICLE_STYLESHEET_FILENAME)
         return f'<link rel="stylesheet" type="text/css" href="{href}">' + body
 
     @property
@@ -120,10 +120,10 @@ class ArticleData(FileData):
             is_tag = isinstance(el, SoupTag)
             el_text = el.text if is_tag else str(el)
             preview_len += len(el_text)
-            if preview_len > Config.ARTICLE_PREVIEW_LENGTH:
+            if preview_len > Config.BLOG_ARTICLE_PREVIEW_LENGTH:
                 if not is_tag:
                     max_el_text_len = len(el_text) - (
-                            preview_len - Config.ARTICLE_PREVIEW_LENGTH)
+                            preview_len - Config.BLOG_ARTICLE_PREVIEW_LENGTH)
                     preview += el_text[:el_text.rfind(' ', 0, max_el_text_len)]
                 break
             preview += str(el)
@@ -131,7 +131,7 @@ class ArticleData(FileData):
 
     def _get_static_url(self, resource):
         path_parts = [Config.STATIC_URL_PATH,
-                      os.path.basename(Config.ARTICLES_FOLDER),
+                      os.path.basename(Config.BLOG_ARTICLES_FOLDER),
                       self.series_data.dir_name if self.series_data else None,
                       self.dir_name,
                       resource]
@@ -142,12 +142,12 @@ def load_article_datas(dir_path, default_author, last_updated, series_data=None)
     for dir_entry in os.scandir(dir_path):  # type: os.DirEntry
         is_dir = dir_entry.is_dir()
         if is_dir and os.path.exists(os.path.join(dir_entry.path,
-                                                  Config.ARTICLE_FILENAME)):
+                                                  Config.BLOG_ARTICLE_FILENAME)):
             yield from load_article_datas(
                 dir_entry.path, default_author, last_updated, series_data)
             continue
 
         is_markdown = dir_entry.is_file() and dir_entry.name.endswith('.md')
         is_updated = dir_entry.stat().st_mtime > last_updated
-        if is_updated and is_markdown and dir_entry.name != Config.SERIES_FILENAME:
+        if is_updated and is_markdown and dir_entry.name != Config.BLOG_SERIES_FILENAME:
             yield ArticleData(dir_entry, default_author, series_data)

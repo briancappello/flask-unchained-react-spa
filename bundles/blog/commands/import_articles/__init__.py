@@ -35,13 +35,13 @@ def import_articles(reset):
 @unchained.inject('model_manager')
 def _import_articles(reset, model_manager: ModelManager = injectable):
     last_updated, default_author = load_metadata(reset)
-    new_articles = load_article_datas(Config.ARTICLES_FOLDER,
+    new_articles = load_article_datas(Config.BLOG_ARTICLES_FOLDER,
                                       default_author,
                                       last_updated)
     count = 0
     count += process_article_datas(new_articles, None, model_manager)
 
-    for series_data in load_series_datas(Config.ARTICLES_FOLDER,
+    for series_data in load_series_datas(Config.BLOG_ARTICLES_FOLDER,
                                          default_author,
                                          last_updated):
         series, is_create = series_data.create_or_update_series()
@@ -88,15 +88,15 @@ def process_article_datas(article_datas, series,
 
 @unchained.inject('user_manager')
 def load_metadata(reset=False, user_manager: UserManager = injectable):
-    if not os.path.exists(Config.ARTICLES_FOLDER):
-        click.secho('Could not find directory ARTICLES_FOLDER'
-                    f'={Config.ARTICLES_FOLDER}', fg='red')
+    if not os.path.exists(Config.BLOG_ARTICLES_FOLDER):
+        click.secho('Could not find directory BLOG_ARTICLES_FOLDER'
+                    f'={Config.BLOG_ARTICLES_FOLDER}', fg='red')
         sys.exit(1)
 
-    default_author = user_manager.get_by(email=Config.DEFAULT_ARTICLE_AUTHOR_EMAIL)
+    default_author = user_manager.get_by(email=Config.BLOG_DEFAULT_ARTICLE_AUTHOR_EMAIL)
     if not default_author:
-        click.secho('Could not find a User with DEFAULT_ARTICLE_AUTHOR_EMAIL'
-                    f'={Config.DEFAULT_ARTICLE_AUTHOR_EMAIL}', fg='red')
+        click.secho('Could not find a User with BLOG_DEFAULT_ARTICLE_AUTHOR_EMAIL'
+                    f'={Config.BLOG_DEFAULT_ARTICLE_AUTHOR_EMAIL}', fg='red')
         sys.exit(1)
 
     if reset or not os.path.exists(ARTICLES_METADATA_PATH):

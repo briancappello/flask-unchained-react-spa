@@ -24,8 +24,8 @@ class FileData(object):
 
         self.file_path = dir_entry.path
         self.file_name = dir_entry.name
-        self.is_dir = self.file_name in [Config.ARTICLE_FILENAME,
-                                         Config.SERIES_FILENAME]
+        self.is_dir = self.file_name in [Config.BLOG_ARTICLE_FILENAME,
+                                         Config.BLOG_SERIES_FILENAME]
         self.dir_path = os.path.dirname(self.file_path) \
             if self.is_dir else None
         self.dir_name = self.dir_path.rsplit(os.path.sep, 1)[1] \
@@ -54,6 +54,6 @@ class FileData(object):
         if not tag_names:
             return []
         if not isinstance(tag_names, (tuple, list)):
-            tag_names = tag_names.split(Config.FRONTMATTER_LIST_DELIMETER)
+            tag_names = tag_names.split(Config.BLOG_FRONTMATTER_LIST_DELIMETER)
         return [self.tag_manager.get_or_create(name=tag_name.strip())[0]
                 for tag_name in tag_names]
