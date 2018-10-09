@@ -4,4 +4,5 @@ from ..models import ContactSubmission
 
 
 class ContactSubmissionManager(ModelManager):
-    model = ContactSubmission
+    class Meta:
+        model = ContactSubmission

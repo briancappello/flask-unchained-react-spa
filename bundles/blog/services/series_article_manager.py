@@ -4,4 +4,5 @@ from ..models import SeriesArticle
 
 
 class SeriesArticleManager(ModelManager):
-    model = SeriesArticle
+    class Meta:
+        model = SeriesArticle

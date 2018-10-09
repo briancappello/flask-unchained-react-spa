@@ -6,7 +6,8 @@ from ..models import Article, ArticleTag, Category, Series, Tag
 
 
 class ArticleManager(ModelManager):
-    model = Article
+    class Meta:
+        model = Article
 
     def find_published(self):
         return (self.q

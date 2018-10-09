@@ -6,8 +6,9 @@ from ..services import ArticleManager, SeriesManager
 
 
 class TagResource(ModelResource):
-    model = Tag
-    include_methods = ('get', 'list')
+    class Meta:
+        model = Tag
+        include_methods = ('get', 'list')
 
     def __init__(self,
                  article_manager: ArticleManager = injectable,
@@ -17,7 +18,7 @@ class TagResource(ModelResource):
         self.series_manager = series_manager
 
     def get(self, tag):
-        return self.serializer.dump({
+        return self.Meta.serializer.dump({
             'name': tag.name,
             'slug': tag.slug,
             'series': self.series_manager.find_by_tag(tag),

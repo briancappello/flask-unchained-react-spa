@@ -8,8 +8,9 @@ from ..models import ContactSubmission
 
 
 class ContactSubmissionResource(ModelResource):
-    model = ContactSubmission
-    include_methods = ('create',)
+    class Meta:
+        model = ContactSubmission
+        include_methods = ('create',)
 
     def __init__(self, mail: Mail = injectable):
         super().__init__()

@@ -4,4 +4,5 @@ from ..models import Category
 
 
 class CategoryManager(ModelManager):
-    model = Category
+    class Meta:
+        model = Category

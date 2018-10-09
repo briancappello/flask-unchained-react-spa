@@ -4,4 +4,5 @@ from ..models import Tag
 
 
 class TagManager(ModelManager):
-    model = Tag
+    class Meta:
+        model = Tag

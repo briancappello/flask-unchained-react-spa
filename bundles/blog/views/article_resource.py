@@ -6,10 +6,11 @@ from ..services import ArticleManager
 
 
 class ArticleResource(ModelResource):
-    model = Article
-    include_methods = ('get', 'list')
-    include_decorators = ('get',)
-    member_param = '<string:slug>'
+    class Meta:
+        model = Article
+        include_methods = ('get', 'list')
+        include_decorators = ('get',)
+        member_param = '<string:slug>'
 
     def __init__(self, article_manager: ArticleManager = injectable):
         super().__init__()

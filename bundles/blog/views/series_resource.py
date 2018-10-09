@@ -4,5 +4,6 @@ from ..models import Series
 
 
 class SeriesResource(ModelResource):
-    model = Series
-    include_methods = ('get', 'list')
+    class Meta:
+        model = Series
+        include_methods = ('get', 'list')
