@@ -8,7 +8,7 @@ doc_styles: html
 	cd docs; cp -a _static/* _build/html/_static/; cd ..
 
 docs: doc_styles
-	python ./docs_dev_server.py
+	sphinx-autobuild . _build/html --re-ignore ".+___jb_\w+___$"
 
 deploy_prod: build
 	cd ansible; ansible-playbook -i hosts_prod playbooks/main.yaml; cd ..

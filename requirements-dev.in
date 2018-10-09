@@ -4,7 +4,7 @@
 
 # docs
 guzzle-sphinx-theme
-livereload
+sphinx-autobuild
 sphinx
 sphinx-click
 sphinxcontrib-websupport
@@ -16,5 +16,4 @@ faker
 pytest
 pytest-flask
 pytest-watch
-PyYAML
 tox
