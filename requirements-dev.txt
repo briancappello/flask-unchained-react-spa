@@ -4,44 +4,46 @@
 #
 #    pip-compile --output-file requirements-dev.txt requirements-dev.in
 #
-alabaster==0.7.10         # via sphinx
-attrs==17.4.0             # via pytest
-babel==2.5.3              # via sphinx
-certifi==2018.1.18        # via requests
+-r requirements.txt
+
+alabaster==0.7.12         # via sphinx
+argh==0.26.2              # via sphinx-autobuild, watchdog
+atomicwrites==1.2.1       # via pytest
+attrs==18.2.0             # via pytest
+certifi==2018.8.24        # via requests
 chardet==3.0.4            # via requests
-click==6.7                # via flask, travis-sphinx
+colorama==0.4.0           # via pytest-watch
+docopt==0.6.2             # via pytest-watch
 docutils==0.14            # via sphinx
-faker==0.8.11
-flask==0.12.2             # via pytest-flask
+factory-boy==2.11.1
+filelock==3.0.9           # via tox
 ghp-import==0.5.5         # via travis-sphinx
 guzzle-sphinx-theme==0.7.11
-idna==2.6                 # via requests
-imagesize==1.0.0          # via sphinx
-itsdangerous==0.24        # via flask
-jinja2==2.10              # via flask, sphinx
-livereload==2.5.1
-markupsafe==1.0           # via jinja2
-packaging==16.8           # via sphinx
-pbr==3.1.1                # via sphinx-click
-pluggy==0.6.0             # via pytest, tox
-py==1.5.2                 # via pytest, tox
+idna==2.7                 # via requests
+imagesize==1.1.0          # via sphinx
+livereload==2.5.2         # via sphinx-autobuild
+more-itertools==4.3.0     # via pytest
+packaging==18.0           # via sphinx
+pathtools==0.1.2          # via sphinx-autobuild, watchdog
+pbr==4.3.0                # via sphinx-click
+pluggy==0.7.1             # via pytest, tox
+port_for==0.3.1           # via sphinx-autobuild
+py==1.6.0                 # via pytest, tox
 pygments==2.2.0           # via sphinx
-pyparsing==2.2.0          # via packaging
-pytest-flask==0.10.0
-pytest==3.4.1
-python-dateutil==2.6.1    # via faker
-pytz==2018.3              # via babel
-pyyaml==3.12
-requests==2.18.4          # via sphinx
-six==1.11.0               # via faker, livereload, packaging, pytest, python-dateutil, sphinx, tox
+pyparsing==2.2.2          # via packaging
+pytest-flask==0.13.0
+pytest-watch==4.2.0
+pytest==3.8.2
+requests==2.19.1          # via sphinx
 snowballstemmer==1.2.1    # via sphinx
-sphinx-click==1.0.4
-sphinx<1.7
-sphinxcontrib-websupport==1.0.1
-text-unidecode==1.2       # via faker
-tornado==4.5.3            # via livereload
-tox==2.9.1
-travis-sphinx==2.1.0
-urllib3==1.22             # via requests
-virtualenv==15.1.0        # via tox
-werkzeug==0.14.1          # via flask, pytest-flask
+sphinx-autobuild==0.7.1
+sphinx-click==1.4.0
+sphinx==1.8.1
+sphinxcontrib-websupport==1.1.0
+toml==0.10.0              # via tox
+tornado==5.1.1            # via livereload, sphinx-autobuild
+tox==3.5.2
+travis-sphinx==2.2.1
+urllib3==1.23             # via requests
+virtualenv==16.0.0        # via tox
+watchdog==0.9.0           # via pytest-watch, sphinx-autobuild

@@ -1,3 +1,3 @@
 #!/bin/sh
 
-python3 docs_dev_server.py
+sphinx-autobuild . _build/html --re-ignore ".+___jb_\w+___$"

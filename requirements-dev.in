@@ -4,15 +4,16 @@
 
 # docs
 guzzle-sphinx-theme
-livereload
+sphinx-autobuild
 sphinx
 sphinx-click
 sphinxcontrib-websupport
 travis-sphinx
 
 # testing
+factory_boy
 faker
 pytest
 pytest-flask
-PyYAML
+pytest-watch
 tox
