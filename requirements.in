@@ -14,5 +14,6 @@ psycopg2
 python-dateutil
 python-frontmatter
 pytz
+redis
 tzlocal
 uwsgi
