@@ -5,11 +5,14 @@ test -e backend/config.py || (
    cp backend/config.example.py backend/config.py
 )
 
-until python3 manage.py db fixtures fixtures.json --reset
+until flask db upgrade
 do
     echo "Waiting for postgres ready..."
     sleep 2
+    flask db init
+    flask db migrate -m 'create initial tables'
 done
 
-python3 manage.py blog import_articles --reset
-python3 manage.py run --host 0.0.0.0 --port 5000
+flask db import-fixtures
+flask blog import-articles --reset
+flask run --host 0.0.0.0 --port 5000
