@@ -8,6 +8,7 @@ from flask.cli import with_appcontext
 from flask_unchained.bundles.sqlalchemy import ModelManager
 from flask_unchained import unchained, injectable
 
+from backend.config import Config as AppConfig
 from ....security.services import UserManager
 from ...config import Config
 from ...services import SeriesArticleManager
@@ -16,7 +17,7 @@ from ..group import blog
 from .article_data import load_article_datas
 from .series_data import load_series_datas
 
-ARTICLES_METADATA_PATH = os.path.join(Config.APP_CACHE_FOLDER,
+ARTICLES_METADATA_PATH = os.path.join(AppConfig.APP_CACHE_FOLDER,
                                       '.articles-metadata.json')
 
 

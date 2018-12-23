@@ -3,11 +3,11 @@ import redis
 
 from appdirs import AppDirs
 from datetime import timedelta
-from flask_unchained import AppConfig, get_boolean_env, url_for
+from flask_unchained import AppBundleConfig, get_boolean_env, url_for
 from werkzeug.local import LocalProxy
 
 
-class Config(AppConfig):
+class Config(AppBundleConfig):
     ##########################################################################
     # flask                                                                  #
     ##########################################################################
@@ -17,7 +17,7 @@ class Config(AppConfig):
     APP_ROOT = os.path.abspath(os.path.dirname(__file__))
     PROJECT_ROOT = os.path.abspath(os.path.join(APP_ROOT, os.pardir))
 
-    app_dirs = AppDirs('flask-react-spa')
+    app_dirs = AppDirs('flask-unchained-react-spa')
     APP_CACHE_FOLDER = app_dirs.user_cache_dir
     APP_DATA_FOLDER = app_dirs.user_data_dir
 
@@ -115,12 +115,12 @@ class DevConfig:
     # mail                                                                   #
     ##########################################################################
     MAIL_PORT = 1025  # MailHog
-    MAIL_DEFAULT_SENDER = ('Flask React SPA', 'noreply@localhost')
+    MAIL_DEFAULT_SENDER = ('Flask Unchained React SPA', 'noreply@localhost')  # FIXME
 
     ##########################################################################
     # security                                                               #
     ##########################################################################
-    SECURITY_CONFIRM_EMAIL_WITHIN = '1 minutes'  # for testing
+    SECURITY_CONFIRM_EMAIL_WITHIN = '1 minutes'  # for easier manual testing
 
 
 class ProdConfig:
@@ -136,8 +136,8 @@ class TestConfig:
 
     SQLALCHEMY_DATABASE_URI = '{engine}://{user}:{pw}@{host}:{port}/{db}'.format(
         engine=os.getenv('FLASK_DATABASE_ENGINE', 'postgresql+psycopg2'),
-        user=os.getenv('FLASK_DATABASE_USER', 'flask_test'),
-        pw=os.getenv('FLASK_DATABASE_PASSWORD', 'flask_test'),
+        user=os.getenv('FLASK_DATABASE_USER', 'flask_api_test'),
+        pw=os.getenv('FLASK_DATABASE_PASSWORD', 'flask_api_test'),
         host=os.getenv('FLASK_DATABASE_HOST', '127.0.0.1'),
         port=os.getenv('FLASK_DATABASE_PORT', 5432),
-        db=os.getenv('FLASK_DATABASE_NAME', 'flask_test'))
+        db=os.getenv('FLASK_DATABASE_NAME', 'flask_api_test'))

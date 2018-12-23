@@ -1,10 +1,11 @@
 import os
 
-from backend.config import Config as AppConfig
+from flask_unchained import BundleConfig
 
 
-class Config(AppConfig):
-    BLOG_ARTICLES_FOLDER = os.path.join(AppConfig.PROJECT_ROOT, 'articles')
+class Config(BundleConfig):
+    BLOG_ARTICLES_FOLDER = os.path.join(BundleConfig.current_app.config.PROJECT_ROOT,
+                                        'articles')
     BLOG_ARTICLE_PREVIEW_LENGTH = 400
     BLOG_FRONTMATTER_LIST_DELIMETER = ','
     BLOG_MARKDOWN_EXTENSIONS = ['extra']
