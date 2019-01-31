@@ -7,4 +7,4 @@ cd {{ project_dir }}
 # Set additional environment variables.
 . {{ project_virtualenv_dir }}/bin/postactivate
 
-exec {{ celery }} worker -A wsgi.celery -l info
+exec {{ celery }} worker -A celery_app.celery -l info

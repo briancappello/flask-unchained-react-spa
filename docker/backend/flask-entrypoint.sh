@@ -15,4 +15,4 @@ done
 
 flask db import-fixtures
 flask blog import-articles --reset
-flask run --host 0.0.0.0 --port 5000
+API_HOST="backend" flask run --host 0.0.0.0 --port 5000

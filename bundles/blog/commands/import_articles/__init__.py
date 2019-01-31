@@ -5,7 +5,7 @@ import sys
 
 from datetime import datetime
 from flask.cli import with_appcontext
-from flask_unchained.bundles.sqlalchemy import ModelManager
+from flask_unchained.bundles.sqlalchemy import SessionManager
 from flask_unchained import unchained, injectable
 
 from backend.config import Config as AppConfig
@@ -33,14 +33,14 @@ def import_articles(reset):
         click.echo('No new articles found. Exiting.')
 
 
-@unchained.inject('model_manager')
-def _import_articles(reset, model_manager: ModelManager = injectable):
+@unchained.inject('session_manager')
+def _import_articles(reset, session_manager: SessionManager = injectable):
     last_updated, default_author = load_metadata(reset)
     new_articles = load_article_datas(Config.BLOG_ARTICLES_FOLDER,
                                       default_author,
                                       last_updated)
     count = 0
-    count += process_article_datas(new_articles, None, model_manager)
+    count += process_article_datas(new_articles, None, session_manager)
 
     for series_data in load_series_datas(Config.BLOG_ARTICLES_FOLDER,
                                          default_author,
@@ -49,28 +49,28 @@ def _import_articles(reset, model_manager: ModelManager = injectable):
         should_save = is_create or series_data.last_updated.timestamp() > last_updated
         if should_save:
             count += 1
-            model_manager.save(series)
+            session_manager.save(series)
 
         msg_prefix = ('' if not should_save
                       else ('Created' if is_create else 'Updated '))
         click.echo(f'{msg_prefix}Series: {series.title}')
 
-        count += process_article_datas(series_data.articles, series, model_manager)
+        count += process_article_datas(series_data.articles, series, session_manager)
 
     if count:
-        model_manager.commit()
+        session_manager.commit()
         save_metadata()
     return count
 
 
 @unchained.inject('series_article_manager')
 def process_article_datas(article_datas, series,
-                          model_manager: ModelManager,
+                          session_manager: SessionManager,
                           series_article_manager: SeriesArticleManager = injectable):
     count = -1
     for count, article_data in enumerate(article_datas):
         article, is_create = article_data.create_or_update_article()
-        model_manager.save(article)
+        session_manager.save(article)
         if series and not article.article_series:
             if article_data.part:
                 series.series_articles.append(

@@ -21,6 +21,7 @@ BUNDLES = [
     'flask_unchained.bundles.celery',
     'flask_unchained.bundles.session',
     'flask_unchained.bundles.sqlalchemy',
+    'py_yaml_fixtures',
 
     'bundles.blog',
     'bundles.security',

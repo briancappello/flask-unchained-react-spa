@@ -6,4 +6,4 @@ test -e frontend/app/config.js || (
 )
 
 npm run build:dll
-ANALYZER_HOST="0.0.0.0" npm run start
+ANALYZER_HOST="0.0.0.0" API_HOST="backend" npm run start

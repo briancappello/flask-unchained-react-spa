@@ -1,3 +1,3 @@
 #!/bin/sh
 
-celery worker -A wsgi.celery -l info
+celery worker -A celery_app.celery -l info

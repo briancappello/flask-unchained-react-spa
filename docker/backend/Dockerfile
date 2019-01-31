@@ -11,8 +11,9 @@ WORKDIR /flask/src
 
 COPY ./requirements.txt requirements.txt
 COPY ./requirements-dev.txt requirements-dev.txt
-RUN pip install --no-cache-dir -r requirements-dev.txt
 
+RUN pip install -U pip==18.1
+RUN pip install --no-cache-dir -r requirements-dev.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
 USER flask

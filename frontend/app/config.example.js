@@ -21,7 +21,8 @@ const isDev = !(isProd || isTest)
 const LOGGING_ENABLED = isDev
 const LOG_LEVEL = DEBUG
 
-const SERVER_URL = '' // set this if your API server is different from the frontend server
+// change this if your API server is different from the frontend server
+const SERVER_URL = ''
 
 const SITE_NAME = 'Flask React SPA'
 const COPYRIGHT = 'Company Name'
