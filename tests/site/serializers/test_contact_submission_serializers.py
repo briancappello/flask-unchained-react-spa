@@ -1,7 +1,5 @@
-from backend.serializers import ContactSubmissionSerializer
-
-
 def test_contact_submission_serializer():
+    from backend.serializers import ContactSubmissionSerializer
     serializer = ContactSubmissionSerializer()
 
     # check it escapes html tags, and converts paragraphs to html

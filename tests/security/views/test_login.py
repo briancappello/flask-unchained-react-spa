@@ -33,12 +33,12 @@ class TestLogin:
     #     assert current_user == user
 
     def test_json_login_errors(self, api_client):
-        r = api_client.post('security.login',
+        r = api_client.post('security_controller.login',
                             data=dict(email=None, password=None))
         assert 'error' in r.json
 
     def test_json_login_with_email(self, api_client, user):
-        r = api_client.post('security.login',
+        r = api_client.post('security_controller.login',
                             data=dict(email=user.email, password='password'))
         assert r.status_code == 200
         assert 'user' in r.json
@@ -48,7 +48,7 @@ class TestLogin:
 
     # FIXME
     # def test_json_login_with_username(self, api_client, user):
-    #     r = api_client.post('security.login',
+    #     r = api_client.post('security_controller.login',
     #                         data=dict(email=user.username, password='password'))
     #     assert r.status_code == 200
     #     assert 'user' in r.json
@@ -59,7 +59,7 @@ class TestLogin:
     def test_active_user_required(self, api_client, user, user_manager):
         user.active = False
         user_manager.save(user, commit=True)
-        r = api_client.post('security.login',
+        r = api_client.post('security_controller.login',
                             data=dict(email=user.email, password='password'))
         assert r.status_code == 401
 
@@ -71,10 +71,11 @@ class TestLogin:
                                    email='test@example.com',
                                    password='password',
                                    first_name='the',
-                                   last_name='user')
+                                   last_name='user',
+                                   active=True)
         security_service.register_user(user)
 
-        r = api_client.post('security.login',
+        r = api_client.post('security_controller.login',
                             data=dict(email=user.email, password='password'))
         assert r.status_code == 401
         assert 'Email requires confirmation.' == r.json['error']

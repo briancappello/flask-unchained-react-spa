@@ -21,7 +21,7 @@ routes = lambda: [
             post('/send-confirmation-email', SecurityController.send_confirmation_email),
             post('/forgot-password', SecurityController.forgot_password),
             post('/reset-password/<token>', SecurityController.reset_password,
-                 endpoint='security.post_reset_password'),
+                 endpoint='security_controller.post_reset_password'),
             post('/change-password', SecurityController.change_password),
         ]),
         resource('/users', UserResource),

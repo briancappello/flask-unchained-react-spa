@@ -2,10 +2,11 @@ import factory
 import pytest
 
 from datetime import datetime, timezone
-from flask_unchained.bundles.sqlalchemy.pytest import ModelFactory
 
 # FIXME: seems this is needed so pytest-in-tox will resolve the correct fixture order
-from flask_unchained.bundles.security.pytest import client, api_client
+from flask_unchained.bundles.mail.pytest import *
+from flask_unchained.bundles.security.pytest import *
+from flask_unchained.bundles.sqlalchemy.pytest import *
 
 from bundles.security.models import User, Role, UserRole
 

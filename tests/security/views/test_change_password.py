@@ -7,12 +7,12 @@ from flask_login import current_user
 @pytest.mark.usefixtures('user')
 class TestChangePassword:
     def test_auth_required(self, api_client):
-        r = api_client.post('security.change_password')
+        r = api_client.post('security_controller.change_password')
         assert r.status_code == 401
 
     def test_fields_required(self, api_client):
         api_client.login_user()
-        r = api_client.post('security.change_password')
+        r = api_client.post('security_controller.change_password')
         assert r.status_code == 400, r.json
         assert 'password' in r.errors
         assert 'new_password' in r.errors
@@ -20,7 +20,7 @@ class TestChangePassword:
 
     def test_min_length(self, api_client):
         api_client.login_user()
-        r = api_client.post('security.change_password',
+        r = api_client.post('security_controller.change_password',
                             data=dict(password='password',
                                       new_password='fail',
                                       new_password_confirm='fail'))
@@ -29,7 +29,7 @@ class TestChangePassword:
 
     def test_new_passwords_match(self, api_client):
         api_client.login_user()
-        r = api_client.post('security.change_password',
+        r = api_client.post('security_controller.change_password',
                             data=dict(password='password',
                                       new_password='long enough',
                                       new_password_confirm='but no match'))
@@ -38,7 +38,7 @@ class TestChangePassword:
 
     def test_new_same_as_the_old(self, api_client):
         api_client.login_user()
-        r = api_client.post('security.change_password',
+        r = api_client.post('security_controller.change_password',
                             data=dict(password='password',
                                       new_password='password',
                                       new_password_confirm='password'))
@@ -47,7 +47,7 @@ class TestChangePassword:
 
     def test_valid_new_password(self, api_client, user):
         api_client.login_user()
-        r = api_client.post('security.change_password',
+        r = api_client.post('security_controller.change_password',
                             data=dict(password='password',
                                       new_password='new password',
                                       new_password_confirm='new password'))

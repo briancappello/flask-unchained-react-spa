@@ -7,12 +7,12 @@ from flask_unchained.bundles.security import UserManager, SecurityService
 @pytest.mark.usefixtures('user')
 class TestResendConfirmation:
     def test_email_required(self, api_client):
-        r = api_client.post('security.send_confirmation')
+        r = api_client.post('security_controller.send_confirmation_email')
         assert r.status_code == 400
         assert 'email' in r.errors
 
     def test_cannot_reconfirm(self, user, api_client):
-        r = api_client.post('security.send_confirmation',
+        r = api_client.post('security_controller.send_confirmation_email',
                             data=dict(email=user.email))
         assert r.status_code == 400
         assert 'Your email has already been confirmed.' in r.errors['email']
@@ -28,10 +28,10 @@ class TestResendConfirmation:
                                    last_name='user')
         security_service.register_user(user)
 
-        r = api_client.post('security.send_confirmation',
+        r = api_client.post('security_controller.send_confirmation_email',
                             data=dict(email=user.email))
         assert r.status_code == 204
         assert len(outbox) == len(templates) == 2
         assert templates[0].template.name == 'security/email/welcome.html'
-        assert templates[1].template.name == 'security/email/confirmation_instructions.html'
+        assert templates[1].template.name == 'security/email/email_confirmation_instructions.html'
         assert templates[0].context.get('confirmation_link') != templates[1].context.get('confirmation_link')
