@@ -1,11 +1,11 @@
-FROM python:alpine3.6
+FROM python:3.6-alpine3.8
 
 ENV PYTHONUNBUFFERED 1
 
 RUN apk add --no-cache shadow
 RUN useradd --user-group --create-home --home-dir /flask --shell /bin/false flask
 
-RUN apk add --no-cache linux-headers make gcc musl-dev libxml2-dev libxslt-dev libffi-dev postgresql-dev
+RUN apk add --no-cache linux-headers make gcc musl-dev libxml2-dev libxslt-dev libffi-dev postgresql postgresql-dev
 
 WORKDIR /flask/src
 
@@ -24,3 +24,4 @@ COPY ./docker/backend/docs-entrypoint.sh /
 COPY ./docker/backend/celery-beat-entrypoint.sh /
 COPY ./docker/backend/celery-worker-entrypoint.sh /
 COPY ./docker/backend/flask-entrypoint.sh /flask-entrypoint.sh
+COPY ./docker/backend/test-entrypoint.sh /test-entrypoint.sh

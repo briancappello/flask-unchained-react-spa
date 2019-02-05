@@ -99,3 +99,18 @@ services:
       - /celery-beat-entrypoint.sh
     volumes:
       - .:/flask/src
+
+  pytest:
+    build:
+      context: .
+      dockerfile: ./docker/backend/Dockerfile
+    entrypoint:
+      - /test-entrypoint.sh
+    volumes:
+      - .:/flask/src
+    links:
+      - postgres
+      - redis
+    environment:
+      - FLASK_DATABASE_HOST=postgres
+      - FLASK_REDIS_HOST=redis
