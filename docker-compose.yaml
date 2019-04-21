@@ -35,19 +35,19 @@ services:
       - ./docker/postgres/data:/var/lib/postgresql
       - ./docker/postgres/init-user-db.sh:/docker-entrypoint-initdb.d/init-user-db.sh
 
-  sphinx_docs:
-    build:
-      context: .
-      dockerfile: ./docker/backend/Dockerfile
-    environment:
-     - SPHINX_DOCS_HOST=0.0.0.0
-     - SPHINX_DOCS_PORT=5500
-    ports:
-      - 5500:5500  # access the app documentation at localhost:5500
-    entrypoint:
-      - /docs-entrypoint.sh
-    volumes:
-      - .:/flask/src
+#  sphinx_docs:
+#    build:
+#      context: .
+#      dockerfile: ./docker/backend/Dockerfile
+#    environment:
+#     - SPHINX_DOCS_HOST=0.0.0.0
+#     - SPHINX_DOCS_PORT=5500
+#    ports:
+#      - 5500:5500  # access the app documentation at localhost:5500
+#    entrypoint:
+#      - /docs-entrypoint.sh
+#    volumes:
+#      - .:/flask/src
 
   backend:
     build:
