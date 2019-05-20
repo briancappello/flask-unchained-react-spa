@@ -11,6 +11,7 @@ from bundles.security.services import UserManager
 from backend.utils import parse_datetime, utcnow
 
 from ...config import Config
+from ...models import Article
 from ...services import ArticleManager
 from .file_data import FileData
 
@@ -30,8 +31,12 @@ class ArticleData(FileData):
         self.user_manager = user_manager
 
     def create_or_update_article(self):
-        article, is_create = self.article_manager.get_or_create(
-            author=self.author, file_path=self.file_path)
+        is_create = False
+        article = self.article_manager.get_by(author=self.author,
+                                              file_path=self.file_path)
+        if article is None:
+            is_create = True
+            article = Article(author=self.author, file_path=self.file_path)
 
         article.title = self.title
         article.publish_date = self.publish_date
@@ -82,9 +87,7 @@ class ArticleData(FileData):
     @property
     @functools.lru_cache()
     def html(self):
-        html = markdown.markdown(self.markdown,
-                                 Config.BLOG_MARKDOWN_EXTENSIONS,
-                                 output_format='html5')
+        html = markdown.markdown(self.markdown, output_format='html5')
 
         # fix image links
         soup = BeautifulSoup(html, 'lxml')

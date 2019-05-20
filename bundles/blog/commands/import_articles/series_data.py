@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 from flask_unchained import unchained, injectable
 
 from ...config import Config
+from ...models import Series
 from ...services import SeriesManager
 
 from .article_data import load_article_datas
@@ -23,7 +24,11 @@ class SeriesData(FileData):
         self.series_manager = series_manager
 
     def create_or_update_series(self):
-        series, is_create = self.series_manager.get_by(file_path=self.file_path)
+        is_create = False
+        series = self.series_manager.get_by(file_path=self.file_path)
+        if series is None:
+            is_create = True
+            series = Series(file_path=self.file_path)
 
         series.title = self.title
         series.file_path = self.file_path
@@ -35,9 +40,7 @@ class SeriesData(FileData):
 
     @property
     def summary(self):
-        html = markdown.markdown(self.markdown,
-                                 Config.BLOG_MARKDOWN_EXTENSIONS,
-                                 output_format='html5')
+        html = markdown.markdown(self.markdown, output_format='html5')
 
         # strip html and body tags
         soup = BeautifulSoup(html, 'lxml')

@@ -28,7 +28,7 @@ class ArticleManager(ModelManager):
 
     def get_prev_next(self, article: Article):
         if article.series:
-            return article.get_series_prev_next()
+            return self.get_series_prev_next(article)
 
         result = self.db.session.execute(f'''
           WITH articles AS (
