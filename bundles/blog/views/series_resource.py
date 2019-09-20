@@ -7,3 +7,4 @@ class SeriesResource(ModelResource):
     class Meta:
         model = Series
         include_methods = ('get', 'list')
+        member_param = '<string:slug>'

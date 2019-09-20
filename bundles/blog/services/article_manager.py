@@ -30,7 +30,7 @@ class ArticleManager(ModelManager):
         if article.series:
             return self.get_series_prev_next(article)
 
-        result = self.db.session.execute(f'''
+        result = self.session.execute(f'''
           WITH articles AS (
             SELECT
               slug,
