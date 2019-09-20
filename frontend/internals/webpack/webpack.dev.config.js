@@ -74,14 +74,14 @@ function dependencyHandlers() {
     ]
   }
 
-  const dllPath = path.resolve(process.cwd(), dllPlugin.path || 'node_modules/flask-api-dlls')
+  const dllPath = path.resolve(process.cwd(), dllPlugin.path || 'node_modules/react-spa-dlls')
 
   /**
    * If DLLs aren't explicitly defined, we assume all production dependencies listed in package.json
    * Reminder: You need to exclude any server side dependencies by listing them in dllConfig.exclude
    */
   if (!dllPlugin.dlls) {
-    const manifestPath = path.resolve(dllPath, 'flaskApiDeps.json')
+    const manifestPath = path.resolve(dllPath, 'reactSpaDeps.json')
 
     if (!fs.existsSync(manifestPath)) {
       logger.error('The DLL manifest is missing. Please run `npm run build:dll`')

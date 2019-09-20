@@ -57,7 +57,7 @@ const PngLogo = ({ logo, label, maxWidth='110px', style }) => (
 
 export default (props) => (
   <div>
-    <h1>Welcome to Flask React SPA!</h1>
+    <h1>Welcome to Flask Unchained React SPA!</h1>
     <p>A <strong>production-ready</strong> boilerplate built with <strong>Python 3</strong>, <strong>Flask</strong> and <strong>ES6 React/Redux</strong>.</p>
     <div className="row">
       <h2>Frontend Stack</h2>

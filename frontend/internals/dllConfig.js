@@ -37,7 +37,7 @@ const dllConfig = {
       const include = pkg.dllPlugin && pkg.dllPlugin.include || dllConfig.dllPlugin.defaults.include
       const includeDependencies = uniq(dependencyNames.concat(include))
       return {
-        flaskApiDeps: pullAll(includeDependencies, exclude),
+        reactSpaDeps: pullAll(includeDependencies, exclude),
       }
     },
   },

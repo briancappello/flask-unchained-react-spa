@@ -40,7 +40,7 @@ class Config(AppBundleConfig):
     ##########################################################################
     MAIL_ADMINS = ['admin@example.com']  # FIXME
     MAIL_DEFAULT_SENDER = (
-        os.environ.get('FLASK_MAIL_DEFAULT_SENDER_NAME', 'Flask React SPA'),
+        os.environ.get('FLASK_MAIL_DEFAULT_SENDER_NAME', 'Flask Unchained React SPA'),
         os.environ.get('FLASK_MAIL_DEFAULT_SENDER_EMAIL',
                        f"noreply@{os.environ.get('FLASK_DOMAIN', 'localhost')}")
     )

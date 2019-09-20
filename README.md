@@ -1,4 +1,4 @@
-# Flask React SPA
+# Flask Unchained React SPA
 
 ### Status
 [![Build Status](https://travis-ci.org/briancappello/flask-react-spa.svg?branch=master)](https://travis-ci.org/briancappello/flask-react-spa)

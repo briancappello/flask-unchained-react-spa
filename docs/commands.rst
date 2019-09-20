@@ -9,7 +9,7 @@ Run `python manage.py`:
 
    Usage: manage.py [OPTIONS] COMMAND [ARGS]...
 
-     A utility script for the Flask React SPA application.
+     A utility script for the Flask Unchained React SPA application.
 
    Options:
      --env [dev|prod]    Whether to use DevConfig or ProdConfig (default dev)

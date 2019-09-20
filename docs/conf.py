@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# Flask React SPA documentation build configuration file, created by
+# Flask Unchained React SPA documentation build configuration file, created by
 # sphinx-quickstart on Thu Sep  7 06:48:34 2017.
 #
 # This file is execfile()d with the current directory set to its
@@ -56,7 +56,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'Flask React SPA'
+project = 'Flask Unchained React SPA'
 copyright = '2017 Brian Cappello'
 author = 'Brian Cappello'
 
@@ -100,7 +100,7 @@ html_theme = 'guzzle_sphinx_theme'
 # documentation.
 #
 html_theme_options = {
-    'project_nav_name': 'Flask React SPA',
+    'project_nav_name': 'Flask Unchained React SPA',
     'projectlink': 'https://github.com/briancappello/flask-react-spa',
 }
 
@@ -124,7 +124,7 @@ html_sidebars = {
 # -- Options for HTMLHelp output ------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'FlaskReactSPAdoc'
+htmlhelp_basename = 'FlaskUnchainedReactSPAdoc'
 
 
 # -- Options for LaTeX output ---------------------------------------------
@@ -151,7 +151,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'FlaskReactSPA.tex', 'Flask React SPA Documentation',
+    (master_doc, 'FlaskUnchainedReactSPA.tex', 'Flask Unchained React SPA Documentation',
      'Brian Cappello', 'manual'),
 ]
 
@@ -161,7 +161,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'flaskreactspa', 'Flask React SPA Documentation',
+    (master_doc, 'flaskreactspa', 'Flask Unchained React SPA Documentation',
      [author], 1)
 ]
 
@@ -172,8 +172,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'FlaskReactSPA', 'Flask React SPA Documentation',
-     author, 'FlaskReactSPA', 'One line description of project.',
+    (master_doc, 'FlaskUnchainedReactSPA', 'Flask Unchained React SPA Documentation',
+     author, 'FlaskUnchainedReactSPA', 'One line description of project.',
      'Miscellaneous'),
 ]
 

@@ -24,7 +24,7 @@ const LOG_LEVEL = DEBUG
 // change this if your API server is different from the frontend server
 const SERVER_URL = ''
 
-const SITE_NAME = 'Flask React SPA'
+const SITE_NAME = 'Flask Unchained React SPA'
 const COPYRIGHT = 'Company Name'
 
 const HIGHLIGHT_LANGUAGES = [

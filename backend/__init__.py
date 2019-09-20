@@ -1,4 +1,4 @@
-"""Flask React SPA"""
+"""Flask Unchained React SPA"""
 
 from flask import Flask, session
 from flask_unchained import AppBundle

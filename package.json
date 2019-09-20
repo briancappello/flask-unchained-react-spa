@@ -85,7 +85,7 @@
     "webpack-hot-middleware": "^2.18.2"
   },
   "dllPlugin": {
-    "path": "node_modules/flask-api-dlls"
+    "path": "node_modules/react-spa-dlls"
   },
   "jest": {
     "collectCoverageFrom": [
