@@ -32,7 +32,7 @@ if (!exists(dllManifestPath)) {
   writeFile(
     dllManifestPath,
     JSON.stringify(defaults({
-      name: 'flask-api-dlls',
+      name: 'react-spa-dlls',
       private: true,
       author: pkg.author,
       repository: pkg.repository,

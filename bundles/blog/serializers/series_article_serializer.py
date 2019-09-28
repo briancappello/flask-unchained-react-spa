@@ -7,8 +7,8 @@ ARTICLE_SERIES_FIELDS = ('part', 'slug', 'title')
 
 # used when serializing a list of series
 class SeriesArticleSerializer(ma.ModelSerializer):
-    slug = ma.Nested('ArticleSerializer', attribute='article', only='slug')
-    title = ma.Nested('ArticleSerializer', attribute='article', only='title')
+    slug = ma.Pluck('ArticleSerializer', 'slug', attribute='article', dump_only=True)
+    title = ma.Pluck('ArticleSerializer', 'title', attribute='article', dump_only=True)
 
     class Meta:
         model = SeriesArticle
@@ -17,8 +17,8 @@ class SeriesArticleSerializer(ma.ModelSerializer):
 
 # used when serializing a list of articles
 class ArticleSeriesSerializer(ma.ModelSerializer):
-    slug = ma.Nested('SeriesSerializer', attribute='series', only='slug')
-    title = ma.Nested('SeriesSerializer', attribute='series', only='title')
+    slug = ma.Pluck('SeriesSerializer', 'slug', attribute='series', dump_only=True)
+    title = ma.Pluck('SeriesSerializer', 'title', attribute='series', dump_only=True)
 
     class Meta:
         model = SeriesArticle

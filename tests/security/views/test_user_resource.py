@@ -5,8 +5,8 @@ from flask_unchained.bundles.security import AnonymousUser, current_user
 NEW_USER_DATA = dict(
     username='newUser',
     email='new@example.com',
-    first_name='new',
-    last_name='user',
+    firstName='new',
+    lastName='user',
     password='password',
 )
 
@@ -85,6 +85,14 @@ class TestUserResource:
         assert r.status_code == 201
         assert 'user' in r.json
         assert 'token' in r.json
+
+        expected_user_keys = {
+            'id', 'active', 'email', 'firstName', 'lastName', 'username', 'roles',
+        }
+        assert set(r.json['user'].keys()) == expected_user_keys
+        for key in expected_user_keys:
+            if key in NEW_USER_DATA:
+                assert r.json['user'][key] == NEW_USER_DATA[key]
         assert current_user == user_manager.get(r.json['user']['id'])
 
         assert len(outbox) == 1

@@ -1,24 +1,21 @@
 """Flask Unchained React SPA"""
 
-from flask import Flask, session
-from flask_unchained import AppBundle
 from flask_wtf.csrf import generate_csrf
+from flask_unchained import AppBundle, FlaskUnchained, session
 
 
 class BackendBundle(AppBundle):
-    @classmethod
-    def before_init_app(cls, app: Flask):
+    def before_init_app(self, app: FlaskUnchained):
         app.url_map.strict_slashes = False
 
-    @classmethod
-    def after_init_app(cls, app: Flask):
+    def after_init_app(self, app: FlaskUnchained):
         app.jinja_env.add_extension('jinja2_time.TimeExtension')
 
-        # set session to use PERMANENT_SESSION_LIFETIME
-        # and reset the session timer on every request
         @app.before_request
         def enable_session_timeout():
+            # set session to use Config.PERMANENT_SESSION_LIFETIME
             session.permanent = True
+            # and reset the session timer on every request
             session.modified = True
 
         # send CSRF token in the cookie

@@ -12,9 +12,9 @@ class ContactSubmissionSerializer(ma.ModelSerializer):
         model = ContactSubmission
 
     @ma.pre_load
-    def message_to_html(self, data):
+    def message_to_html(self, data, **kwargs):
         if not data.get('message'):
-            return None
+            return data
         message = html.escape(data['message'])
         message = re.sub(r'\n\n+', '\n\n', '\n'.join(map(
             str.strip,
