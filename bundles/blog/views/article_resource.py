@@ -12,9 +12,7 @@ class ArticleResource(ModelResource):
         include_decorators = ('get',)
         member_param = '<string:slug>'
 
-    def __init__(self, article_manager: ArticleManager = injectable):
-        super().__init__()
-        self.article_manager = article_manager
+    article_manager: ArticleManager = injectable
 
     def get(self, article):
         prev, next = self.article_manager.get_prev_next(article)

@@ -12,9 +12,7 @@ class ContactSubmissionResource(ModelResource):
         model = ContactSubmission
         include_methods = ('create',)
 
-    def __init__(self, mail: Mail = injectable):
-        super().__init__()
-        self.mail = mail
+    mail: Mail = injectable
 
     def create(self, contact_submission, errors):
         if errors:

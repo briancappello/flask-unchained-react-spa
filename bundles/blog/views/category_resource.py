@@ -10,12 +10,8 @@ class CategoryResource(ModelResource):
         model = Category
         include_methods = ('get', 'list')
 
-    def __init__(self,
-                 article_manager: ArticleManager = injectable,
-                 series_manager: SeriesManager = injectable):
-        super().__init__()
-        self.article_manager = article_manager
-        self.series_manager = series_manager
+    article_manager: ArticleManager = injectable
+    series_manager: SeriesManager = injectable
 
     def get(self, category):
         return self.Meta.serializer.dump({
