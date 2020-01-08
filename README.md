@@ -1,7 +1,7 @@
 # Flask Unchained React SPA
 
 ### Status
-[![Build Status](https://travis-ci.org/briancappello/flask-react-spa.svg?branch=master)](https://travis-ci.org/briancappello/flask-react-spa)
+[![Build Status](https://travis-ci.org/briancappello/flask-unchained-react-spa.svg?branch=master)](https://travis-ci.org/briancappello/flask-unchained-react-spa)
 
 ![screenshot](./screenshot.png)
 
@@ -53,8 +53,8 @@ Dependencies:
 
 ```bash
 # install
-$ git clone git@github.com:briancappello/flask-react-spa.git
-$ cd flask-react-spa
+$ git clone git@github.com:briancappello/flask-unchained-react-spa.git
+$ cd flask-unchained-react-spa
 
 # configure (the defaults are fine for development)
 $ edit `backend/config.example.py` and save as `backend/config.py`
@@ -88,8 +88,8 @@ Dependencies:
 
 ```bash
 # install
-$ git clone git@github.com:briancappello/flask-react-spa.git
-$ cd flask-react-spa
+$ git clone git@github.com:briancappello/flask-unchained-react-spa.git
+$ cd flask-unchained-react-spa
 $ mkvirtualenv -p /path/to/python3 flask_react_spa
 $ pip install -r requirements.txt
 $ pip install -r requirements-dev.txt  # for tests and sphinx docs
