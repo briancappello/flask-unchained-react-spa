@@ -3,19 +3,16 @@ import redis
 
 from appdirs import AppDirs
 from datetime import timedelta
-from flask_unchained import AppBundleConfig, get_boolean_env, url_for
+from flask_unchained import BundleConfig, get_boolean_env, url_for
 from werkzeug.local import LocalProxy
 
 
-class Config(AppBundleConfig):
+class Config(BundleConfig):
     ##########################################################################
     # flask                                                                  #
     ##########################################################################
     DEBUG = get_boolean_env('FLASK_DEBUG', False)
     SECRET_KEY = os.getenv('FLASK_SECRET_KEY', 'not-secret-key')  # FIXME
-
-    APP_ROOT = os.path.abspath(os.path.dirname(__file__))
-    PROJECT_ROOT = os.path.abspath(os.path.join(APP_ROOT, os.pardir))
 
     app_dirs = AppDirs('flask-unchained-react-spa')
     APP_CACHE_FOLDER = app_dirs.user_cache_dir

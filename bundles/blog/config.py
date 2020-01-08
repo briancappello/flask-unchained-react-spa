@@ -4,8 +4,7 @@ from flask_unchained import BundleConfig
 
 
 class Config(BundleConfig):
-    BLOG_ARTICLES_FOLDER = os.path.join(BundleConfig.current_app.config.PROJECT_ROOT,
-                                        'articles')
+    BLOG_ARTICLES_FOLDER = os.path.join(BundleConfig.current_app.root_path, 'articles')
     BLOG_ARTICLE_PREVIEW_LENGTH = 400
     BLOG_FRONTMATTER_LIST_DELIMETER = ','
     BLOG_MARKDOWN_EXTENSIONS = ['extra']
