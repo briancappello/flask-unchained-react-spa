@@ -12,6 +12,7 @@ class Config(BundleConfig):
     # flask                                                                  #
     ##########################################################################
     DEBUG = get_boolean_env('FLASK_DEBUG', False)
+    FLASH_MESSAGES = False
     SECRET_KEY = os.getenv('FLASK_SECRET_KEY', 'not-secret-key')  # FIXME
 
     app_dirs = AppDirs('flask-unchained-react-spa')
@@ -63,7 +64,6 @@ class Config(BundleConfig):
     ##########################################################################
     # security                                                               #
     ##########################################################################
-    FLASH_MESSAGES = False
     SECURITY_PASSWORD_SALT = 'security-password-salt'
     SECURITY_CONFIRMABLE = True
     SECURITY_REGISTERABLE = True
@@ -99,7 +99,7 @@ class Config(BundleConfig):
         db=os.getenv('FLASK_DATABASE_NAME', 'flask_api'))
 
 
-class DevConfig:
+class DevConfig(Config):
     DEBUG = get_boolean_env('FLASK_DEBUG', True)
     # EXPLAIN_TEMPLATE_LOADING = True
     # SQLALCHEMY_ECHO = True
@@ -120,7 +120,7 @@ class DevConfig:
     SECURITY_CONFIRM_EMAIL_WITHIN = '1 minutes'  # for easier manual testing
 
 
-class ProdConfig:
+class ProdConfig(Config):
     pass
 
 
@@ -128,7 +128,7 @@ class StagingConfig(ProdConfig):
     pass
 
 
-class TestConfig:
+class TestConfig(Config):
     TESTING = True
 
     SQLALCHEMY_DATABASE_URI = '{engine}://{user}:{pw}@{host}:{port}/{db}'.format(
