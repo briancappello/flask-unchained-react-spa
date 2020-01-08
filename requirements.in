@@ -10,7 +10,7 @@ bcrypt
 jinja2
 jinja2-time
 markdown
-psycopg2
+psycopg2-binary
 python-dateutil
 python-frontmatter
 pytz
