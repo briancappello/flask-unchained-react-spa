@@ -1,2 +1,2 @@
 [all]
-centos74.io app_domain=centos74.io run_fixtures=True
+fun.io app_domain=fun.io run_fixtures=True
