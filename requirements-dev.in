@@ -6,10 +6,8 @@ pip-tools
 
 # docs
 guzzle-sphinx-theme
-sphinx-autobuild
 sphinx
 sphinx-click
-sphinxcontrib-websupport
 travis-sphinx
 
 # testing
