@@ -19,16 +19,15 @@ DATE_RE = re.compile(r'^(?P<date>\d{4}-\d{2}-\d{2})')
 PART_RE = re.compile(r'^(\d{4}-\d{2}-\d{2}-)?(part-)?(?P<part>\d+)', re.IGNORECASE)
 
 
-@unchained.inject('article_manager', 'user_manager')
+@unchained.inject()
 class ArticleData(FileData):
-    def __init__(self, dir_entry, default_author, series_data=None,
-                 article_manager: ArticleManager = injectable,
-                 user_manager: UserManager = injectable):
+    article_manager: ArticleManager = injectable
+    user_manager: UserManager = injectable
+
+    def __init__(self, dir_entry, default_author, series_data=None):
         super().__init__(dir_entry)
         self.default_author = default_author
         self.series_data = series_data
-        self.article_manager = article_manager
-        self.user_manager = user_manager
 
     def create_or_update_article(self):
         is_create = False

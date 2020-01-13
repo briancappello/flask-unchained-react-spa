@@ -14,13 +14,12 @@ DATE_RE = re.compile(r'^(?P<date>\d{4}-\d{2}-\d{2})')
 PART_RE = re.compile(r'^(\d{4}-\d{2}-\d{2}-)?(part-)?(?P<part>\d+)', re.IGNORECASE)
 
 
-@unchained.inject('category_manager', 'tag_manager')
-class FileData(object):
-    def __init__(self, dir_entry: os.DirEntry,
-                 category_manager: CategoryManager = injectable,
-                 tag_manager: TagManager = injectable):
-        self.category_manager = category_manager
-        self.tag_manager = tag_manager
+@unchained.inject()
+class FileData:
+    category_manager: CategoryManager = injectable
+    tag_manager: TagManager = injectable
+
+    def __init__(self, dir_entry: os.DirEntry):
 
         self.file_path = dir_entry.path
         self.file_name = dir_entry.name
