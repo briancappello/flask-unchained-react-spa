@@ -9,7 +9,7 @@ def filter_omitted(dict_):
     return {k: v for k, v in dict_.items() if not is_omitted(v)}
 
 
-class FilterModule(object):
+class FilterModule:
     def filters(self):
         return {
             'filter_omitted': filter_omitted,
