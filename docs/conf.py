@@ -101,7 +101,7 @@ html_theme = 'guzzle_sphinx_theme'
 #
 html_theme_options = {
     'project_nav_name': 'Flask Unchained React SPA',
-    'projectlink': 'https://github.com/briancappello/flask-react-spa',
+    'projectlink': 'https://github.com/briancappello/flask-unchained-react-spa',
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,

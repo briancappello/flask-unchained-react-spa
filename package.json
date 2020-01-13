@@ -5,7 +5,7 @@
   "version": "0.0.1",
   "author": "Brian Cappello",
   "homepage": "https://github.com/briancappello",
-  "repository": "https://github.com/briancappello/flask-react-spa",
+  "repository": "https://github.com/briancappello/flask-unchained-react-spa",
   "scripts": {
     "analyze": "node node_modules/webpack-bundle-analyzer/lib/bin/analyzer.js static/stats.json --port 5556",
     "build:analyze": "npm run build && npm run analyze",
