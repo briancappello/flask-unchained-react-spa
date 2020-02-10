@@ -5,16 +5,15 @@ ENV PYTHONUNBUFFERED 1
 RUN apk add --no-cache shadow
 RUN useradd --user-group --create-home --home-dir /flask --shell /bin/false flask
 
-RUN apk add --no-cache linux-headers make gcc musl-dev libxml2-dev libxslt-dev libffi-dev postgresql postgresql-dev
+RUN apk add --no-cache linux-headers make gcc musl-dev libxml2-dev libxslt-dev libffi-dev postgresql postgresql-dev git
 
 WORKDIR /flask/src
 
 COPY ./requirements.txt requirements.txt
 COPY ./requirements-dev.txt requirements-dev.txt
 
-RUN pip install -U pip
+RUN pip install --no-cache-dir -U pip
 RUN pip install --no-cache-dir -r requirements-dev.txt
-RUN pip install --no-cache-dir -r requirements.txt
 
 USER flask
 
