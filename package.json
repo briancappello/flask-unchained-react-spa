@@ -46,7 +46,7 @@
     "redux": "^3.7.2",
     "redux-form": "^7.1.0",
     "redux-saga": "^0.15.6",
-    "set-value": "^2.0.1",
+    "set-value": "^4.0.1",
     "super-skeleton": "briancappello/super-skeleton"
   },
   "devDependencies": {
